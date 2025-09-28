@@ -1,0 +1,9 @@
+name: AxCore
+version: '1.0.0'
+main: de.jauni.axCore.AxCore
+api-version: '1.21'
+prefix: AxCore
+load: STARTUP
+authors: [ JauniKappauni ]
+description: Core Plugin
+website: https://github.com/JauniKappauni
