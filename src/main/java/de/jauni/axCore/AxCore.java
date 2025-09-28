@@ -7,7 +7,7 @@ public final class AxCore extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
+        getCommand("heal").setExecutor(new de.jauni.axCore.commands.HealCommand());
     }
 
     @Override
