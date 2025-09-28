@@ -9,3 +9,4 @@ description: Core Plugin
 website: https://github.com/JauniKappauni
 commands:
   heal:
+  feed:

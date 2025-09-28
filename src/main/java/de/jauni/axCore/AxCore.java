@@ -8,6 +8,7 @@ public final class AxCore extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getCommand("heal").setExecutor(new de.jauni.axCore.commands.HealCommand());
+        getCommand("feed").setExecutor(new de.jauni.axCore.commands.FeedCommand());
     }
 
     @Override
