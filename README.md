@@ -2,3 +2,7 @@
 
 - /heal
 - /feed
+- /fly
+- /gm
+- /ping
+- /tp
