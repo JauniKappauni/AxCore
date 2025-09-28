@@ -15,7 +15,7 @@ public class HealCommand implements CommandExecutor {
             player.sendMessage("Du bist bereits geheilt!");
         }
         else{
-            player.setHealth(20.0);
+            player.setHealth(player.getMaxHealth());
             player.sendMessage("Du wurdest geheilt");
         }
         return true;
