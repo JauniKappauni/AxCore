@@ -10,8 +10,14 @@ public class HealCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         Player player = (Player) sender;
-        player.setHealth(20.0);
-        player.sendMessage("Du wurdest geheilt");
+        double playerHealth = player.getHealth();
+        if(playerHealth==20.0){
+            player.sendMessage("Du bist bereits geheilt!");
+        }
+        else{
+            player.setHealth(20.0);
+            player.sendMessage("Du wurdest geheilt");
+        }
         return true;
     }
 }

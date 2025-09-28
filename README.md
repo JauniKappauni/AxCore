@@ -1,1 +1,3 @@
 # Minecraft Core Plugin
+
+- /heal
