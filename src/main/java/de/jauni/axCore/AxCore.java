@@ -13,6 +13,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("gm").setExecutor(new de.jauni.axCore.commands.GameModeCommand());
         getCommand("ping").setExecutor(new de.jauni.axCore.commands.PingCommand());
         getCommand("tp").setExecutor(new de.jauni.axCore.commands.TeleportCommand());
+        getCommand("tphere").setExecutor(new de.jauni.axCore.commands.TeleportHereCommand());
     }
 
     @Override

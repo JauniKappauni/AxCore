@@ -6,3 +6,4 @@
 - /gm
 - /ping
 - /tp
+- /tphere
