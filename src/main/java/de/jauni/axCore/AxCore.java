@@ -11,6 +11,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("feed").setExecutor(new de.jauni.axCore.commands.FeedCommand());
         getCommand("fly").setExecutor(new de.jauni.axCore.commands.FlyCommand());
         getCommand("gm").setExecutor(new de.jauni.axCore.commands.GameModeCommand());
+        getCommand("ping").setExecutor(new de.jauni.axCore.commands.PingCommand());
     }
 
     @Override
