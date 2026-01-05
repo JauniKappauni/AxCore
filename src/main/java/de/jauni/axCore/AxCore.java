@@ -1,5 +1,7 @@
 package de.jauni.axCore;
 
+import de.jauni.axCore.listeners.PlayerJoinListener;
+import de.jauni.axCore.listeners.PlayerQuitListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AxCore extends JavaPlugin {
@@ -14,6 +16,8 @@ public final class AxCore extends JavaPlugin {
         getCommand("ping").setExecutor(new de.jauni.axCore.commands.PingCommand());
         getCommand("tp").setExecutor(new de.jauni.axCore.commands.TeleportCommand());
         getCommand("tphere").setExecutor(new de.jauni.axCore.commands.TeleportHereCommand());
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
     }
 
     @Override
