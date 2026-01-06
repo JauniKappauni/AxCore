@@ -8,3 +8,5 @@
 - /tp
 - /tphere
 - /kick
+- /spawn
+- /setspawn
