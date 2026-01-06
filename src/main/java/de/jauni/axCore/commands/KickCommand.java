@@ -1,5 +1,6 @@
 package de.jauni.axCore.commands;
 
+import de.jauni.axCore.AxCore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -8,6 +9,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class KickCommand implements CommandExecutor {
+    AxCore reference;
+    public KickCommand(AxCore main){
+        this.reference = main;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         if(args.length == 0){
@@ -15,6 +21,7 @@ public class KickCommand implements CommandExecutor {
             return false;
         }
         Player player = Bukkit.getServer().getPlayer(args[0]);
+        reference.getKickedPlayers().add(player.getUniqueId());
         player.kick();
         Bukkit.broadcastMessage(sender.getName() + " kicked " + player.getName());
         return true;
