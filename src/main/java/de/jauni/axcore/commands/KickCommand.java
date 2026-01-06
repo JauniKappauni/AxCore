@@ -1,6 +1,6 @@
-package de.jauni.axCore.commands;
+package de.jauni.axcore.commands;
 
-import de.jauni.axCore.AxCore;
+import de.jauni.axcore.AxCore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

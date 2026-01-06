@@ -1,6 +1,6 @@
-package de.jauni.axCore.listeners;
+package de.jauni.axcore.listeners;
 
-import de.jauni.axCore.AxCore;
+import de.jauni.axcore.AxCore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
