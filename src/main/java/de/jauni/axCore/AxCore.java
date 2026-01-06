@@ -16,6 +16,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("ping").setExecutor(new de.jauni.axCore.commands.PingCommand());
         getCommand("tp").setExecutor(new de.jauni.axCore.commands.TeleportCommand());
         getCommand("tphere").setExecutor(new de.jauni.axCore.commands.TeleportHereCommand());
+        getCommand("kick").setExecutor(new de.jauni.axCore.commands.KickCommand());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
     }
