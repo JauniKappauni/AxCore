@@ -1,6 +1,6 @@
 name: AxCore
 version: '1.0.0'
-main: de.jauni.axCore.AxCore
+main: de.jauni.axcore.AxCore
 api-version: '1.21'
 prefix: AxCore
 load: STARTUP
@@ -18,3 +18,4 @@ commands:
   kick:
   spawn:
   setspawn:
+  god:
