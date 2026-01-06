@@ -15,6 +15,7 @@ public final class AxCore extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        saveDefaultConfig();
         getCommand("heal").setExecutor(new de.jauni.axCore.commands.HealCommand());
         getCommand("feed").setExecutor(new de.jauni.axCore.commands.FeedCommand());
         getCommand("fly").setExecutor(new de.jauni.axCore.commands.FlyCommand());
@@ -25,7 +26,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("kick").setExecutor(new de.jauni.axCore.commands.KickCommand(this));
         getCommand("spawn").setExecutor(new de.jauni.axCore.commands.SpawnCommand());
         getCommand("setspawn").setExecutor(new de.jauni.axCore.commands.SetSpawn());
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
     }
 
@@ -36,5 +37,9 @@ public final class AxCore extends JavaPlugin {
 
     public Set<UUID> getKickedPlayers(){
         return kickedPlayers;
+    }
+
+    public boolean isSpawnOnJoin(){
+        return getConfig().getBoolean("spawnOnJoin", true);
     }
 }
