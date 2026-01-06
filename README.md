@@ -7,3 +7,4 @@
 - /ping
 - /tp
 - /tphere
+- /kick

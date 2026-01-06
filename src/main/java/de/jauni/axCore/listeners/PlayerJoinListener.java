@@ -1,6 +1,7 @@
 package de.jauni.axCore.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +13,6 @@ public class PlayerJoinListener implements Listener {
         event.joinMessage(null);
         Player player = event.getPlayer();
         String userName = player.getName();
-        Bukkit.broadcastMessage(userName + " joined the server!");
+        Bukkit.broadcastMessage(ChatColor.GREEN + userName + " joined the server!");
     }
 }
