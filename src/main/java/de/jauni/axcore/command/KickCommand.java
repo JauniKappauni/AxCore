@@ -1,4 +1,4 @@
-package de.jauni.axcore.commands;
+package de.jauni.axcore.command;
 
 import de.jauni.axcore.AxCore;
 import org.bukkit.Bukkit;

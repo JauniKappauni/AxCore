@@ -1,4 +1,4 @@
-package de.jauni.axcore.listeners;
+package de.jauni.axcore.listener;
 
 import de.jauni.axcore.AxCore;
 import org.bukkit.Bukkit;

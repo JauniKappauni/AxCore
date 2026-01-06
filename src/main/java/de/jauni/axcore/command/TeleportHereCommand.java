@@ -1,4 +1,4 @@
-package de.jauni.axcore.commands;
+package de.jauni.axcore.command;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
