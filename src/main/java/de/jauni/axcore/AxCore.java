@@ -30,6 +30,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("spawn").setExecutor(new de.jauni.axcore.command.SpawnCommand());
         getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawn());
         getCommand("god").setExecutor(new de.jauni.axcore.command.GodCommand(this));
+        getCommand("msg").setExecutor(new de.jauni.axcore.command.MessageCommand());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
