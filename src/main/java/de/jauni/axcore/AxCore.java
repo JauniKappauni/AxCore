@@ -3,7 +3,9 @@ package de.jauni.axcore;
 import de.jauni.axcore.listener.DamageListener;
 import de.jauni.axcore.listener.PlayerJoinListener;
 import de.jauni.axcore.listener.PlayerQuitListener;
+import de.jauni.axcore.manager.DatabaseManager;
 import de.jauni.axcore.manager.EconomyManager;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,12 +21,20 @@ public final class AxCore extends JavaPlugin {
     public EconomyManager getEconomyManager(){
         return economyManager;
     }
+    DatabaseManager databaseManager;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        economyManager = new EconomyManager();
         saveDefaultConfig();
+        try{
+            databaseManager = new DatabaseManager();
+            economyManager = new EconomyManager(databaseManager);
+            getLogger().info("\n\n\n\n\nDatabase connection successfully established!\n\n\n\n\n");
+        } catch (Exception e){
+            getLogger().severe("Database connection not established!");
+            Bukkit.getServer().shutdown();
+        }
         getCommand("heal").setExecutor(new de.jauni.axcore.command.HealCommand());
         getCommand("feed").setExecutor(new de.jauni.axcore.command.FeedCommand());
         getCommand("fly").setExecutor(new de.jauni.axcore.command.FlyCommand());
