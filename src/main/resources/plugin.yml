@@ -20,3 +20,5 @@ commands:
   setspawn:
   god:
   msg:
+  money:
+    description: Manage player balances

@@ -3,6 +3,7 @@ package de.jauni.axcore;
 import de.jauni.axcore.listener.DamageListener;
 import de.jauni.axcore.listener.PlayerJoinListener;
 import de.jauni.axcore.listener.PlayerQuitListener;
+import de.jauni.axcore.manager.EconomyManager;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,10 +15,15 @@ public final class AxCore extends JavaPlugin {
 
     Set<UUID> kickedPlayers = new HashSet<>();
     Set<UUID> godPlayers = new HashSet<>();
+    EconomyManager economyManager;
+    public EconomyManager getEconomyManager(){
+        return economyManager;
+    }
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        economyManager = new EconomyManager();
         saveDefaultConfig();
         getCommand("heal").setExecutor(new de.jauni.axcore.command.HealCommand());
         getCommand("feed").setExecutor(new de.jauni.axcore.command.FeedCommand());
@@ -31,6 +37,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawn());
         getCommand("god").setExecutor(new de.jauni.axcore.command.GodCommand(this));
         getCommand("msg").setExecutor(new de.jauni.axcore.command.MessageCommand());
+        getCommand("money").setExecutor(new de.jauni.axcore.command.economy.MoneyCommand(this));
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
