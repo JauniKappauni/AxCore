@@ -2,6 +2,8 @@ package de.jauni.axcore.manager;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +14,19 @@ public class DatabaseManager {
 
     HikariDataSource hikari;
 
-    public DatabaseManager(){
+    public DatabaseManager(JavaPlugin plugin){
+        FileConfiguration pluginConfig = plugin.getConfig();
+
+        String url = pluginConfig.getString("database.url");
+        String username = pluginConfig.getString("database.username");
+        String password = pluginConfig.getString("database.password");
+
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost/plugin");
-        config.setUsername("root");
-        config.setPassword("");
+
+        config.setJdbcUrl(url);
+        config.setUsername(username);
+        config.setPassword(password);
+
         hikari = new HikariDataSource(config);
     }
 

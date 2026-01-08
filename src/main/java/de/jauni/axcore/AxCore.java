@@ -28,7 +28,7 @@ public final class AxCore extends JavaPlugin {
         // Plugin startup logic
         saveDefaultConfig();
         try{
-            databaseManager = new DatabaseManager();
+            databaseManager = new DatabaseManager(this);
             if(databaseManager.initDatabaseTables() == false){
                 getLogger().severe("Error creating database tables!");
                 Bukkit.getServer().shutdown();
