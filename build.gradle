@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'de.jauni'
@@ -16,6 +17,8 @@ repositories {
 
 dependencies {
      compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    implementation("com.zaxxer:HikariCP:7.0.2")
 }
 
 tasks {
