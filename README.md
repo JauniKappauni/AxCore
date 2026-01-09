@@ -10,3 +10,11 @@
 - /kick
 - /spawn
 - /setspawn
+- /god
+- /msg
+- /money
+- /motd
+- /home
+- /sethome
+- /day
+- /night
