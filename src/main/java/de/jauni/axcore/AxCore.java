@@ -59,6 +59,8 @@ public final class AxCore extends JavaPlugin {
         getCommand("motd").setExecutor(new de.jauni.axcore.command.MOTDCommand());
         getCommand("home").setExecutor(new de.jauni.axcore.command.HomeCommand(databaseManager));
         getCommand("sethome").setExecutor(new de.jauni.axcore.command.SetHomeCommand(databaseManager));
+        getCommand("day").setExecutor(new de.jauni.axcore.command.DayCommand());
+        getCommand("night").setExecutor(new de.jauni.axcore.command.NightCommand());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);

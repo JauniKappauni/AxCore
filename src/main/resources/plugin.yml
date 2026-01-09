@@ -25,3 +25,5 @@ commands:
   motd:
   home:
   sethome:
+  day:
+  night:
