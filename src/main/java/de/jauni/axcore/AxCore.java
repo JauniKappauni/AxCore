@@ -37,6 +37,10 @@ public final class AxCore extends JavaPlugin {
                 getLogger().severe("Error creating homes database table!");
                 Bukkit.getServer().shutdown();
             }
+            if(databaseManager.initDatabaseTables3() == false){
+                getLogger().severe("Error creating warps database table!");
+                Bukkit.getServer().shutdown();
+            }
             economyManager = new EconomyManager(databaseManager);
             getLogger().info("\n\n\n\n\nDatabase connection successfully established!\n\n\n\n\n");
         } catch (Exception e){
@@ -61,6 +65,8 @@ public final class AxCore extends JavaPlugin {
         getCommand("sethome").setExecutor(new de.jauni.axcore.command.SetHomeCommand(databaseManager));
         getCommand("day").setExecutor(new de.jauni.axcore.command.DayCommand());
         getCommand("night").setExecutor(new de.jauni.axcore.command.NightCommand());
+        getCommand("warp").setExecutor(new de.jauni.axcore.command.WarpCommand(databaseManager));
+        getCommand("setwarp").setExecutor(new de.jauni.axcore.command.SetWarpCommand(databaseManager));
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);

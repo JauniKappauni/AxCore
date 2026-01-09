@@ -27,3 +27,5 @@ commands:
   sethome:
   day:
   night:
+  warp:
+  setwarp:

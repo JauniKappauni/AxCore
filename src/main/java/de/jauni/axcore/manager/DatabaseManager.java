@@ -50,4 +50,13 @@ public class DatabaseManager {
             }
         }
     }
+
+    public boolean initDatabaseTables3() throws SQLException {
+        try(Connection conn = getConnection()){
+            try(PreparedStatement ps3 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS warps (uuid VARCHAR(255), world VARCHAR(255), x DOUBLE, y DOUBLE, z DOUBLE, pitch FLOAT, yaw FLOAT, name VARCHAR(255) PRIMARY KEY)")){
+                ps3.executeUpdate();
+                return true;
+            }
+        }
+    }
 }

@@ -18,3 +18,5 @@
 - /sethome
 - /day
 - /night
+- /warp
+- /setwarp
