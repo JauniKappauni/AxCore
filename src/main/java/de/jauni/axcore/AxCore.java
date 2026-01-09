@@ -30,7 +30,11 @@ public final class AxCore extends JavaPlugin {
         try{
             databaseManager = new DatabaseManager(this);
             if(databaseManager.initDatabaseTables() == false){
-                getLogger().severe("Error creating database tables!");
+                getLogger().severe("Error creating balance database table!");
+                Bukkit.getServer().shutdown();
+            }
+            if(databaseManager.initDatabaseTables2() == false){
+                getLogger().severe("Error creating homes database table!");
                 Bukkit.getServer().shutdown();
             }
             economyManager = new EconomyManager(databaseManager);
@@ -53,6 +57,8 @@ public final class AxCore extends JavaPlugin {
         getCommand("msg").setExecutor(new de.jauni.axcore.command.MessageCommand());
         getCommand("money").setExecutor(new de.jauni.axcore.command.economy.MoneyCommand(this));
         getCommand("motd").setExecutor(new de.jauni.axcore.command.MOTDCommand());
+        getCommand("home").setExecutor(new de.jauni.axcore.command.HomeCommand(databaseManager));
+        getCommand("sethome").setExecutor(new de.jauni.axcore.command.SetHomeCommand(databaseManager));
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);

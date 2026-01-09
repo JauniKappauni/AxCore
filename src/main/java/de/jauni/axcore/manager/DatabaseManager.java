@@ -30,18 +30,24 @@ public class DatabaseManager {
         hikari = new HikariDataSource(config);
     }
 
-    Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         return hikari.getConnection();
     }
-    public boolean initDatabaseTables() {
+    public boolean initDatabaseTables() throws SQLException {
         try(Connection conn = getConnection()){
                 try(PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS balances (uuid VARCHAR(255) NOT NULL PRIMARY KEY, balance DOUBLE)")){
                     ps.executeUpdate();
-                    return true;
+                        return true;
                 }
         }
-        catch (SQLException e){
-            return false;
+    }
+
+    public boolean initDatabaseTables2() throws SQLException {
+        try(Connection conn = getConnection()){
+            try(PreparedStatement ps2 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS homes (uuid VARCHAR(255), world VARCHAR(255), x DOUBLE, y DOUBLE, z DOUBLE, pitch FLOAT, yaw FLOAT, name VARCHAR(255) PRIMARY KEY)")){
+                ps2.executeUpdate();
+                return true;
+            }
         }
     }
 }

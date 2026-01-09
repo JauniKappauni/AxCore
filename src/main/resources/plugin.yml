@@ -23,3 +23,5 @@ commands:
   money:
     description: Manage player balances
   motd:
+  home:
+  sethome:
