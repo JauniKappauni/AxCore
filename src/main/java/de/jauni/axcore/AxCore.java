@@ -67,6 +67,8 @@ public final class AxCore extends JavaPlugin {
         getCommand("night").setExecutor(new de.jauni.axcore.command.NightCommand());
         getCommand("warp").setExecutor(new de.jauni.axcore.command.WarpCommand(databaseManager));
         getCommand("setwarp").setExecutor(new de.jauni.axcore.command.SetWarpCommand(databaseManager));
+        getCommand("homes").setExecutor(new de.jauni.axcore.command.HomesCommand(databaseManager));
+        getCommand("warps").setExecutor(new de.jauni.axcore.command.WarpsCommand(databaseManager));
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
