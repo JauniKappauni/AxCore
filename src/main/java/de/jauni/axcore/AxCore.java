@@ -84,6 +84,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("weather").setExecutor(new de.jauni.axcore.command.WeatherCommand());
         getCommand("ban").setExecutor(new de.jauni.axcore.command.BanCommand(databaseManager));
         getCommand("unban").setExecutor(new de.jauni.axcore.command.UnbanCommand(databaseManager));
+        getCommand("flyspeed").setExecutor(new de.jauni.axcore.command.FlySpeed());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
