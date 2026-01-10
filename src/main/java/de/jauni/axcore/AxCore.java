@@ -68,7 +68,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("tphere").setExecutor(new de.jauni.axcore.command.TeleportHereCommand());
         getCommand("kick").setExecutor(new de.jauni.axcore.command.KickCommand(this));
         getCommand("spawn").setExecutor(new de.jauni.axcore.command.SpawnCommand());
-        getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawn());
+        getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawnCommand());
         getCommand("god").setExecutor(new de.jauni.axcore.command.GodCommand(this));
         getCommand("msg").setExecutor(new de.jauni.axcore.command.MessageCommand());
         getCommand("money").setExecutor(new de.jauni.axcore.command.economy.MoneyCommand(this));
@@ -84,7 +84,7 @@ public final class AxCore extends JavaPlugin {
         getCommand("weather").setExecutor(new de.jauni.axcore.command.WeatherCommand());
         getCommand("ban").setExecutor(new de.jauni.axcore.command.BanCommand(databaseManager));
         getCommand("unban").setExecutor(new de.jauni.axcore.command.UnbanCommand(databaseManager));
-        getCommand("flyspeed").setExecutor(new de.jauni.axcore.command.FlySpeed());
+        getCommand("flyspeed").setExecutor(new de.jauni.axcore.command.FlySpeedCommand());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
