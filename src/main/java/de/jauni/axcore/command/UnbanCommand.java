@@ -3,6 +3,7 @@ package de.jauni.axcore.command;
 import de.jauni.axcore.manager.DatabaseManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,6 +29,10 @@ public class UnbanCommand implements CommandExecutor {
             return true;
         }
         Player sourcePlayer = (Player) sender;
+        if(args.length == 0){
+            sourcePlayer.sendMessage(ChatColor.RED + "Bitte gib einen Spielernamen an.");
+            return false;
+        }
         OfflinePlayer targetPlayer = Bukkit.getServer().getOfflinePlayer(args[0]);
         try(Connection conn = databaseManager.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("UPDATE players SET isBanned = false WHERE uuid = ?");
