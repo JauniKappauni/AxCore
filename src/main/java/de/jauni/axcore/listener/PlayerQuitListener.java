@@ -1,6 +1,7 @@
 package de.jauni.axcore.listener;
 
 import de.jauni.axcore.AxCore;
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -25,6 +26,10 @@ public class PlayerQuitListener implements Listener {
         if(reference.getKickedPlayers().remove(uuid)){
             return;
         }
-        Bukkit.broadcastMessage(ChatColor.RED + userName + " quit the server!");
+        if(reference.isBanned(player.getUniqueId())){
+            player.kickPlayer(reference.getBanReason(player.getUniqueId()));
+        } else {
+            Bukkit.broadcastMessage(ChatColor.RED + userName + " hat den Server verlassen!");
+        }
     }
 }

@@ -59,4 +59,13 @@ public class DatabaseManager {
             }
         }
     }
+
+    public boolean initDatabaseTables4() throws SQLException {
+        try(Connection conn = getConnection()){
+            try(PreparedStatement ps4 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS players(uuid VARCHAR(255) PRIMARY KEY, name VARCHAR(255), isBanned BOOLEAN, reason VARCHAR(255))")){
+                ps4.executeUpdate();
+                return true;
+            }
+        }
+    }
 }

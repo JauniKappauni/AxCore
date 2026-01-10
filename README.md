@@ -20,3 +20,8 @@
 - /night
 - /warp
 - /setwarp
+- /homes
+- /warps
+- /weather
+- /ban
+- /unban

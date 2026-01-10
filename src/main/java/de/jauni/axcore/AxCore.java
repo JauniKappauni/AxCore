@@ -9,6 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -22,6 +26,10 @@ public final class AxCore extends JavaPlugin {
         return economyManager;
     }
     DatabaseManager databaseManager;
+
+    public DatabaseManager getDatabaseManager(){
+        return databaseManager;
+    }
 
     @Override
     public void onEnable() {
@@ -39,6 +47,10 @@ public final class AxCore extends JavaPlugin {
             }
             if(databaseManager.initDatabaseTables3() == false){
                 getLogger().severe("Error creating warps database table!");
+                Bukkit.getServer().shutdown();
+            }
+            if (databaseManager.initDatabaseTables4() == false) {
+                getLogger().severe("Error creating users database table!");
                 Bukkit.getServer().shutdown();
             }
             economyManager = new EconomyManager(databaseManager);
@@ -70,6 +82,8 @@ public final class AxCore extends JavaPlugin {
         getCommand("homes").setExecutor(new de.jauni.axcore.command.HomesCommand(databaseManager));
         getCommand("warps").setExecutor(new de.jauni.axcore.command.WarpsCommand(databaseManager));
         getCommand("weather").setExecutor(new de.jauni.axcore.command.WeatherCommand());
+        getCommand("ban").setExecutor(new de.jauni.axcore.command.BanCommand(databaseManager));
+        getCommand("unban").setExecutor(new de.jauni.axcore.command.UnbanCommand(databaseManager));
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
@@ -97,6 +111,35 @@ public final class AxCore extends JavaPlugin {
             godPlayers.add(player.getUniqueId());
         } else {
             godPlayers.remove(player.getUniqueId());
+        }
+    }
+    public boolean isBanned(UUID uuid) {
+        try (Connection conn = databaseManager.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement("SELECT isBanned FROM players WHERE uuid = ?");
+            ps.setString(1, uuid.toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
+                return rs.getBoolean("isBanned");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getBanReason(UUID uuid) {
+        try (Connection conn = databaseManager.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement("SELECT reason FROM players WHERE uuid = ?");
+            ps.setString(1, uuid.toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return "false";
+                }
+                return rs.getString("reason");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
