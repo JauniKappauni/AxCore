@@ -7,9 +7,12 @@ import de.jauni.axcore.listener.PlayerQuitListener;
 import de.jauni.axcore.manager.DatabaseManager;
 import de.jauni.axcore.manager.EconomyManager;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +23,8 @@ import java.util.UUID;
 
 public final class AxCore extends JavaPlugin {
 
+    private File langFile;
+    private FileConfiguration langConfig;
     Set<UUID> kickedPlayers = new HashSet<>();
     Set<UUID> godPlayers = new HashSet<>();
     EconomyManager economyManager;
@@ -36,6 +41,7 @@ public final class AxCore extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         saveDefaultConfig();
+        createLangFile();
         try{
             databaseManager = new DatabaseManager(this);
             if(databaseManager.initDatabaseTables() == false){
@@ -89,7 +95,7 @@ public final class AxCore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
-        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new ChatListener(this), this);
     }
 
     @Override
@@ -144,5 +150,16 @@ public final class AxCore extends JavaPlugin {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    private void createLangFile(){
+        langFile = new File(getDataFolder(), "lang.yml");
+        if(!langFile.exists()){
+            saveResource("lang.yml", false);
+        }
+        langConfig = YamlConfiguration.loadConfiguration(langFile);
+    }
+
+    public String getMessage(String path){
+        return langConfig.getString(path);
     }
 }
