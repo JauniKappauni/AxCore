@@ -1,5 +1,6 @@
 package de.jauni.axcore;
 
+import de.jauni.axcore.listener.ChatListener;
 import de.jauni.axcore.listener.DamageListener;
 import de.jauni.axcore.listener.PlayerJoinListener;
 import de.jauni.axcore.listener.PlayerQuitListener;
@@ -88,6 +89,7 @@ public final class AxCore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new DamageListener(this), this);
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
     }
 
     @Override
