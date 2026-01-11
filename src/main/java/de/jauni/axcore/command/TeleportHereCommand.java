@@ -1,5 +1,6 @@
 package de.jauni.axcore.command;
 
+import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,6 +12,10 @@ public class TeleportHereCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        if(!(sender instanceof Player)){
+            Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
+            return true;
+        }
         if(args.length == 0) {
             sender.sendMessage(ChatColor.RED + "Bitte gib einen Spielernamen an.");
             return false;

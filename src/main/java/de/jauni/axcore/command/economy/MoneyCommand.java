@@ -1,6 +1,7 @@
 package de.jauni.axcore.command.economy;
 
 import de.jauni.axcore.AxCore;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,6 +18,10 @@ public class MoneyCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        if(!(sender instanceof Player)){
+            Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
+            return true;
+        }
         if(args.length == 0){
             Player sourcePlayer = (Player) sender;
             Double balance = reference.getEconomyManager().getBalance(sourcePlayer.getUniqueId());

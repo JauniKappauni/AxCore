@@ -27,6 +27,10 @@ public class SetHomeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         if(!(sender instanceof Player)){
             Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
+            return true;
+        }
+        if(!(sender instanceof Player)){
+            Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
         }
         Player player = (Player) sender;
         Location loc = Bukkit.getServer().getPlayer(player.getUniqueId()).getLocation();

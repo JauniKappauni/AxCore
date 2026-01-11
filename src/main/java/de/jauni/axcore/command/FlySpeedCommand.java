@@ -12,8 +12,7 @@ public class FlySpeedCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        if (!(sender instanceof Player)) {
+        if(!(sender instanceof Player)){
             Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
             return true;
         }

@@ -1,5 +1,6 @@
 package de.jauni.axcore.command;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,6 +12,10 @@ public class MessageCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        if(!(sender instanceof Player)){
+            Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
+            return true;
+        }
         Player player1 = (Player) sender;
         Player player2 = Bukkit.getServer().getPlayer(args[0]);
         if(player2 == player1){

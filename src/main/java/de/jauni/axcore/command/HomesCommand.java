@@ -24,6 +24,7 @@ public class HomesCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         if(!(sender instanceof Player)){
             Bukkit.getServer().broadcast(Component.text("Nur Spieler können diesen Befehl ausführen."));
+            return true;
         }
         Player player = (Player) sender;
         try(Connection conn = databaseManager.getConnection()){
