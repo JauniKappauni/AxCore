@@ -1,6 +1,6 @@
 # config.yml
 database:
-  url: jdbc:mysql://localhost/plugin
+  url: jdbc:mysql://localhost/axcore
   username: root
   password: ""
 spawnOnJoin: true
