@@ -1,4 +1,4 @@
-# Minecraft Core Plugin
+# AxCore
 
 - /heal
 - /feed
