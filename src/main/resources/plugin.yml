@@ -19,7 +19,6 @@ commands:
   spawn:
   setspawn:
   god:
-  msg:
   money:
     description: Manage player balances
   motd:

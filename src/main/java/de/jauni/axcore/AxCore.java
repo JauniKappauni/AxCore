@@ -77,7 +77,6 @@ public final class AxCore extends JavaPlugin {
         getCommand("spawn").setExecutor(new de.jauni.axcore.command.SpawnCommand());
         getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawnCommand());
         getCommand("god").setExecutor(new de.jauni.axcore.command.GodCommand(this));
-        getCommand("msg").setExecutor(new de.jauni.axcore.command.MessageCommand());
         getCommand("money").setExecutor(new de.jauni.axcore.command.economy.MoneyCommand(this));
         getCommand("motd").setExecutor(new de.jauni.axcore.command.MOTDCommand());
         getCommand("home").setExecutor(new de.jauni.axcore.command.HomeCommand(databaseManager));
