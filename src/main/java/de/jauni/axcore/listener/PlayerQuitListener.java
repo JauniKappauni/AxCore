@@ -26,10 +26,6 @@ public class PlayerQuitListener implements Listener {
         if(reference.getKickedPlayers().remove(uuid)){
             return;
         }
-        if(reference.isBanned(player.getUniqueId())){
-            player.kickPlayer(reference.getBanReason(player.getUniqueId()));
-        } else {
-            Bukkit.broadcastMessage(ChatColor.RED + userName + " hat den Server verlassen!");
-        }
+        Bukkit.broadcastMessage(ChatColor.RED + userName + " hat den Server verlassen!");
     }
 }

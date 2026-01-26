@@ -31,7 +31,5 @@ commands:
   homes:
   warps:
   weather:
-  ban:
-  unban:
   flyspeed:
     usage: /flyspeed <1-10>

@@ -50,12 +50,7 @@ public class PlayerJoinListener implements Listener {
                 ps.setString(4, "");
                 ps.executeUpdate();
             }
-            if(reference.isBanned(player.getUniqueId())){
-                player.kickPlayer(reference.getBanReason(player.getUniqueId()));
-                Bukkit.getLogger().info("Spieler" + " " + player.getName() + " " + "versuchte zu joinen, ist aber gebannt!");
-            } else {
-                Bukkit.broadcastMessage(ChatColor.GREEN + userName + " hat den Server betreten!");
-            }
+            Bukkit.broadcastMessage(ChatColor.GREEN + userName + " hat den Server betreten!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

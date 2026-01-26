@@ -85,8 +85,6 @@ public final class AxCore extends JavaPlugin {
         getCommand("homes").setExecutor(new de.jauni.axcore.command.HomesCommand(databaseManager));
         getCommand("warps").setExecutor(new de.jauni.axcore.command.WarpsCommand(databaseManager));
         getCommand("weather").setExecutor(new de.jauni.axcore.command.WeatherCommand());
-        getCommand("ban").setExecutor(new de.jauni.axcore.command.BanCommand(databaseManager));
-        getCommand("unban").setExecutor(new de.jauni.axcore.command.UnbanCommand(databaseManager));
         getCommand("flyspeed").setExecutor(new de.jauni.axcore.command.FlySpeedCommand());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
@@ -115,35 +113,6 @@ public final class AxCore extends JavaPlugin {
             godPlayers.add(player.getUniqueId());
         } else {
             godPlayers.remove(player.getUniqueId());
-        }
-    }
-    public boolean isBanned(UUID uuid) {
-        try (Connection conn = databaseManager.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("SELECT isBanned FROM players WHERE uuid = ?");
-            ps.setString(1, uuid.toString());
-            try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    return false;
-                }
-                return rs.getBoolean("isBanned");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getBanReason(UUID uuid) {
-        try (Connection conn = databaseManager.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("SELECT reason FROM players WHERE uuid = ?");
-            ps.setString(1, uuid.toString());
-            try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    return "false";
-                }
-                return rs.getString("reason");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 }
