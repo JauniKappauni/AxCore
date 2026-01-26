@@ -19,13 +19,11 @@ public class PlayerQuitListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
-        event.quitMessage(null);
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         String userName = player.getName();
         if(reference.getKickedPlayers().remove(uuid)){
             return;
         }
-        Bukkit.broadcastMessage(ChatColor.RED + userName + " hat den Server verlassen!");
     }
 }

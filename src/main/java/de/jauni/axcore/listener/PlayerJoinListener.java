@@ -23,7 +23,6 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        event.joinMessage(null);
         Player player = event.getPlayer();
         String userName = player.getName();
 
@@ -50,7 +49,6 @@ public class PlayerJoinListener implements Listener {
                 ps.setString(4, "");
                 ps.executeUpdate();
             }
-            Bukkit.broadcastMessage(ChatColor.GREEN + userName + " hat den Server betreten!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
