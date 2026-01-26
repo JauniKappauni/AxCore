@@ -26,11 +26,6 @@ public class PlayerJoinListener implements Listener {
         Player player = event.getPlayer();
         String userName = player.getName();
 
-        if(reference.getEconomyManager().getBalance(player.getUniqueId()) == 0.0){
-            reference.getEconomyManager().setBalance(player.getUniqueId(), 100.0);
-            player.sendMessage(ChatColor.GREEN + "Du hast 100 erhalten!");
-        }
-
         if(reference.isSpawnOnJoin()){
             Location spawn = player.getWorld().getSpawnLocation();
             player.teleport(spawn);

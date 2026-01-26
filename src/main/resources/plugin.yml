@@ -19,8 +19,6 @@ commands:
   spawn:
   setspawn:
   god:
-  money:
-    description: Manage player balances
   motd:
   home:
   sethome:

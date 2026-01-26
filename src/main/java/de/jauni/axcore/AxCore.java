@@ -4,18 +4,10 @@ import de.jauni.axcore.listener.DamageListener;
 import de.jauni.axcore.listener.PlayerJoinListener;
 import de.jauni.axcore.listener.PlayerQuitListener;
 import de.jauni.axcore.manager.DatabaseManager;
-import de.jauni.axcore.manager.EconomyManager;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -25,10 +17,6 @@ public final class AxCore extends JavaPlugin {
 
     Set<UUID> kickedPlayers = new HashSet<>();
     Set<UUID> godPlayers = new HashSet<>();
-    EconomyManager economyManager;
-    public EconomyManager getEconomyManager(){
-        return economyManager;
-    }
     DatabaseManager databaseManager;
 
     public DatabaseManager getDatabaseManager(){
@@ -41,10 +29,6 @@ public final class AxCore extends JavaPlugin {
         saveDefaultConfig();
         try{
             databaseManager = new DatabaseManager(this);
-            if(databaseManager.initDatabaseTables() == false){
-                getLogger().severe("Error creating balance database table!");
-                Bukkit.getServer().shutdown();
-            }
             if(databaseManager.initDatabaseTables2() == false){
                 getLogger().severe("Error creating homes database table!");
                 Bukkit.getServer().shutdown();
@@ -57,7 +41,6 @@ public final class AxCore extends JavaPlugin {
                 getLogger().severe("Error creating users database table!");
                 Bukkit.getServer().shutdown();
             }
-            economyManager = new EconomyManager(databaseManager);
             getLogger().info("\n\n\n\n\nDatabase connection successfully established!\n\n\n\n\n");
         } catch (Exception e){
             getLogger().severe("Database connection not established!");
@@ -74,7 +57,6 @@ public final class AxCore extends JavaPlugin {
         getCommand("spawn").setExecutor(new de.jauni.axcore.command.SpawnCommand());
         getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawnCommand());
         getCommand("god").setExecutor(new de.jauni.axcore.command.GodCommand(this));
-        getCommand("money").setExecutor(new de.jauni.axcore.command.economy.MoneyCommand(this));
         getCommand("motd").setExecutor(new de.jauni.axcore.command.MOTDCommand());
         getCommand("home").setExecutor(new de.jauni.axcore.command.HomeCommand(databaseManager));
         getCommand("sethome").setExecutor(new de.jauni.axcore.command.SetHomeCommand(databaseManager));

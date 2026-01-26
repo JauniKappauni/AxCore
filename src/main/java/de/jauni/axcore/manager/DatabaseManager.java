@@ -33,14 +33,6 @@ public class DatabaseManager {
     public Connection getConnection() throws SQLException {
         return hikari.getConnection();
     }
-    public boolean initDatabaseTables() throws SQLException {
-        try(Connection conn = getConnection()){
-                try(PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS balances (uuid VARCHAR(255) NOT NULL PRIMARY KEY, balance DOUBLE)")){
-                    ps.executeUpdate();
-                        return true;
-                }
-        }
-    }
 
     public boolean initDatabaseTables2() throws SQLException {
         try(Connection conn = getConnection()){
