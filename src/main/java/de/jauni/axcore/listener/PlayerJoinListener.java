@@ -26,12 +26,6 @@ public class PlayerJoinListener implements Listener {
         Player player = event.getPlayer();
         String userName = player.getName();
 
-        if(reference.isSpawnOnJoin()){
-            Location spawn = player.getWorld().getSpawnLocation();
-            player.teleport(spawn);
-            player.sendMessage(ChatColor.GREEN + "Du wurdest zum Spawn teleportiert!");
-        }
-
         try(Connection conn = reference.getDatabaseManager().getConnection()) {
             PreparedStatement check = conn.prepareStatement("SELECT uuid FROM players WHERE uuid = ?");
             check.setString(1, player.getUniqueId().toString());

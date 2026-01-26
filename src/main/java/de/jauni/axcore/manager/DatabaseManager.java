@@ -34,24 +34,6 @@ public class DatabaseManager {
         return hikari.getConnection();
     }
 
-    public boolean initDatabaseTables2() throws SQLException {
-        try(Connection conn = getConnection()){
-            try(PreparedStatement ps2 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS homes (uuid VARCHAR(255), world VARCHAR(255), x DOUBLE, y DOUBLE, z DOUBLE, pitch FLOAT, yaw FLOAT, name VARCHAR(255) PRIMARY KEY)")){
-                ps2.executeUpdate();
-                return true;
-            }
-        }
-    }
-
-    public boolean initDatabaseTables3() throws SQLException {
-        try(Connection conn = getConnection()){
-            try(PreparedStatement ps3 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS warps (uuid VARCHAR(255), world VARCHAR(255), x DOUBLE, y DOUBLE, z DOUBLE, pitch FLOAT, yaw FLOAT, name VARCHAR(255) PRIMARY KEY)")){
-                ps3.executeUpdate();
-                return true;
-            }
-        }
-    }
-
     public boolean initDatabaseTables4() throws SQLException {
         try(Connection conn = getConnection()){
             try(PreparedStatement ps4 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS players(uuid VARCHAR(255) PRIMARY KEY, name VARCHAR(255))")){

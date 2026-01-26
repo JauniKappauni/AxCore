@@ -29,14 +29,6 @@ public final class AxCore extends JavaPlugin {
         saveDefaultConfig();
         try{
             databaseManager = new DatabaseManager(this);
-            if(databaseManager.initDatabaseTables2() == false){
-                getLogger().severe("Error creating homes database table!");
-                Bukkit.getServer().shutdown();
-            }
-            if(databaseManager.initDatabaseTables3() == false){
-                getLogger().severe("Error creating warps database table!");
-                Bukkit.getServer().shutdown();
-            }
             if (databaseManager.initDatabaseTables4() == false) {
                 getLogger().severe("Error creating users database table!");
                 Bukkit.getServer().shutdown();
@@ -51,21 +43,11 @@ public final class AxCore extends JavaPlugin {
         getCommand("fly").setExecutor(new de.jauni.axcore.command.FlyCommand());
         getCommand("gm").setExecutor(new de.jauni.axcore.command.GameModeCommand());
         getCommand("ping").setExecutor(new de.jauni.axcore.command.PingCommand());
-        getCommand("tp").setExecutor(new de.jauni.axcore.command.TeleportCommand());
-        getCommand("tphere").setExecutor(new de.jauni.axcore.command.TeleportHereCommand());
         getCommand("kick").setExecutor(new de.jauni.axcore.command.KickCommand(this));
-        getCommand("spawn").setExecutor(new de.jauni.axcore.command.SpawnCommand());
-        getCommand("setspawn").setExecutor(new de.jauni.axcore.command.SetSpawnCommand());
         getCommand("god").setExecutor(new de.jauni.axcore.command.GodCommand(this));
         getCommand("motd").setExecutor(new de.jauni.axcore.command.MOTDCommand());
-        getCommand("home").setExecutor(new de.jauni.axcore.command.HomeCommand(databaseManager));
-        getCommand("sethome").setExecutor(new de.jauni.axcore.command.SetHomeCommand(databaseManager));
         getCommand("day").setExecutor(new de.jauni.axcore.command.DayCommand());
         getCommand("night").setExecutor(new de.jauni.axcore.command.NightCommand());
-        getCommand("warp").setExecutor(new de.jauni.axcore.command.WarpCommand(databaseManager));
-        getCommand("setwarp").setExecutor(new de.jauni.axcore.command.SetWarpCommand(databaseManager));
-        getCommand("homes").setExecutor(new de.jauni.axcore.command.HomesCommand(databaseManager));
-        getCommand("warps").setExecutor(new de.jauni.axcore.command.WarpsCommand(databaseManager));
         getCommand("weather").setExecutor(new de.jauni.axcore.command.WeatherCommand());
         getCommand("flyspeed").setExecutor(new de.jauni.axcore.command.FlySpeedCommand());
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
@@ -80,10 +62,6 @@ public final class AxCore extends JavaPlugin {
 
     public Set<UUID> getKickedPlayers(){
         return kickedPlayers;
-    }
-
-    public boolean isSpawnOnJoin(){
-        return getConfig().getBoolean("spawnOnJoin", true);
     }
 
     public boolean isGod(Player player){

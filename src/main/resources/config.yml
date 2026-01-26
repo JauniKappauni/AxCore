@@ -3,4 +3,3 @@ database:
   url: jdbc:mysql://localhost/axcore
   username: root
   password: ""
-spawnOnJoin: true

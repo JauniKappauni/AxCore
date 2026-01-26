@@ -13,21 +13,11 @@ commands:
   fly:
   gm:
   ping:
-  tp:
-  tphere:
   kick:
-  spawn:
-  setspawn:
   god:
   motd:
-  home:
-  sethome:
   day:
   night:
-  warp:
-  setwarp:
-  homes:
-  warps:
   weather:
   flyspeed:
     usage: /flyspeed <1-10>
